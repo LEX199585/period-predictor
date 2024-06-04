@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>喵喵流血周期预测</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;500&display=swap');
+
+        body {
+            font-family: 'Playfair Display', serif;
+            margin: 0;
+            padding: 0;
+            background-color: #FAF7F3;
+            color: #333;
+        }
+        header {
+            background-color: #FAF7F3;
+            color: black;
+            padding: 10px 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            background-color: #F9F6F0;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+        }
+        .image-section {
+            flex: 1;
+            margin-right: 20px;
+        }
+        .form-section {
+            flex: 1;
+        }
+        h2 {
+            color: #333;
+            font-size: 20px;
+            border-bottom: 2px solid #333;
+            padding-bottom: 5px;
+        }
+        .form-group {
+            margin: 20px 0;
+        }
+        .form-group label {
+            font-family: 'Roboto', sans-serif;
+            font-size: 16px;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            font-family: 'Roboto', sans-serif;
+            font-size: 16px;
+            padding: 5px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .form-group button {
+            font-family: 'Roboto', sans-serif;
+            font-size: 16px;
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .form-group button:hover {
+            background-color: #555;
+        }
+        .prediction {
+            font-size: 18px;
+            margin: 20px 0;
+        }
+        .note {
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="image.png" alt="Hermès Logo" style="height: 50px;">
+    </header>
+    <div class="container">
+        <div class="image-section">
+            <img src="cat-paw.png" alt="Cat Paw" style="width: 100%;" />
+        </div>
+        <div class="form-section">
+            <h2>预测喵喵下一个流血时间</h2>
+            <div class="form-group">
+                <label for="last-period">输入上一次流血开始日期:</label>
+                <input type="date" id="last-period" />
+            </div>
+            <div class="form-group">
+                <button onclick="predictPeriod()">预测</button>
+            </div>
+            <div class="prediction" id="prediction"></div>
+            <div class="note" id="note"></div>
+        </div>
+    </div>
+
+    <script>
+        // 平均周期天数
+        const avgCycleLength = 35.75; // 更改为35.75天
+
+        function predictPeriod() {
+            const lastPeriodInput = document.getElementById('last-period').value;
+            if (lastPeriodInput) {
+                const lastPeriodDate = new Date(lastPeriodInput);
+                const nextPeriodDate = new Date(lastPeriodDate.getTime() + avgCycleLength * 24 * 60 * 60 * 1000);
+                document.getElementById('prediction').textContent = `下一个周期预计开始日期: ${nextPeriodDate.toISOString().split('T')[0]}`;
+                document.getElementById('note').textContent = '记得带创可贴哦 :) 喜欢你';
+            } else {
+                document.getElementById('prediction').textContent = '请先输入上一次流血开始日期。';
+                document.getElementById('note').textContent = '';
+            }
+        }
+    </script>
+</body>
+</html>
